@@ -1,0 +1,30 @@
+.input {
+  height: 56px;
+  width: 542px;
+  background: white;
+  border: solid 1px;
+  border-color: rgb(218 218 218);
+  padding-left: 3%;
+  &:focus-visible {
+    border: solid 1px;
+    border-color: rgb(218 218 218);
+    padding-block: 0;
+    padding-inline: 0;
+    border-image-width: 0;
+    padding-left: 3%;
+  }
+}
+.inputContainer {
+  position: relative;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}

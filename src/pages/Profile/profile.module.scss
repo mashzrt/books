@@ -1,0 +1,10 @@
+.nameEmail {
+  display: flex;
+}
+.password {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  height: 100px;
+}
