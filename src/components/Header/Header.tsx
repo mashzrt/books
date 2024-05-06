@@ -1,5 +1,7 @@
 import Input from "../../ui-components/Input/Input";
+import LikedBooks from "../../pages/Likedbooks/likedbooks";
 import Personal from "../../ui-components/Personal/Personal";
+import Basket from "../../pages/Basket/basket";
 import Burger from "../Burger/Burger";
 import styles from "./Header.module.scss";
 const Header = () => {
@@ -7,9 +9,11 @@ const Header = () => {
     <div className={styles.header}>
       <h2>Bookstore</h2>
       <Input />
-      <Personal />
-
-      <Burger />
+      <div className={styles.icons}>
+        <LikedBooks />
+        <Basket />
+        <Personal />
+      </div>
     </div>
   );
 };

@@ -1,10 +1,27 @@
-.img {
-  width: 300px;
-  height: 350px;
+.images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 352px;
+  height: 264px;
+  background-color: rgb(223, 239, 239);
+  .img {
+    width: 200px;
+    max-height: 250px;
+    background-color: rgb(229, 242, 242);
+  }
 }
 .posts {
   display: flex;
   flex-wrap: wrap;
-  width: 70%;
   justify-content: space-between;
+
+  .post {
+    width: 352px;
+    height: 454px;
+
+    .title {
+      width: 335px;
+    }
+  }
 }

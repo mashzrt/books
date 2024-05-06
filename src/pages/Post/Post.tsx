@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 const Post = () => {
   const { isbn13 } = useParams();
   const [post, setPost] = useState({ authors: "", image: "", desc: "" });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   useEffect(() => {
     fetch(`https://api.itbook.store/1.0/books/${isbn13}`)
       .then((responce) => responce.json())
@@ -14,6 +16,7 @@ const Post = () => {
   return (
     <div>
       <button onClick={() => navigate(-1)}>Go back</button>
+
       <h1>{authors}</h1>
       <img src={image} />
       <p>{desc}</p>

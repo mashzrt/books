@@ -1,8 +1,11 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTodo } from "../store/todosSlice";
+import Posts from "../pages/Posts/Posts";
 
 const Home = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h1>New Releases Books</h1>
+      <Posts />
+    </div>
+  );
 };
 export default Home;

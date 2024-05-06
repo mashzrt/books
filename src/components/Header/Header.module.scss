@@ -1,6 +1,14 @@
 .header {
+  margin-left: 10%;
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: #ffffff;
+  margin-top: 2%;
+}
+.icons {
+  display: flex;
+  width: 150px;
+  justify-content: space-around;
 }
