@@ -10,22 +10,25 @@ const Posts = () => {
       .then((responce) => responce.json())
       .then((data) => setPosts(data.books));
   }, []);
-  const postToRender = posts.map(({ isbn13, price, title, image }) => (
-    <div className={styles.post} key={isbn13}>
-      <div className={styles.images}>
-        {" "}
-        <img className={styles.img} src={image} />
+  const postToRender = posts
+    .reverse()
+    .map(({ isbn13, price, title, image }) => (
+      <div className={styles.post} key={isbn13}>
+        <div className={styles.images}>
+          {" "}
+          <img className={styles.img} src={image} />
+        </div>
+        <h3 className={styles.title}>{title}</h3>
+
+        <h4> {price}</h4>
+        <button
+          onClick={() => navigate(`posts/${isbn13}`)}
+          className={styles.personal}
+        >
+          <h3>see</h3>
+        </button>
       </div>
-      <h3 className={styles.title}>{title}</h3>
-      <h4> {price}</h4>
-      <button
-        onClick={() => navigate("posts/:isbn13")}
-        className={styles.personal}
-      >
-        <h3>see</h3>
-      </button>
-    </div>
-  ));
+    ));
   return <div className={styles.posts}>{postToRender}</div>;
 };
 export default Posts;

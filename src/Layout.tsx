@@ -14,7 +14,7 @@ const Layout = () => {
         value={{ isActive: isActive, setIsactive: setIsactive }}
       >
         <Header />
-        <NavBar />
+
         <Outlet />
         <footer className={styles.footer}>
           <span>©2022 Bookstore</span>

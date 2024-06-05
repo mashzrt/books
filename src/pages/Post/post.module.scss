@@ -1,0 +1,54 @@
+.post {
+  margin-left: 21%;
+  .BackIcon {
+    margin-top: 4%;
+  }
+  h1 {
+    font-size: 56px;
+    margin-top: 2%;
+  }
+  .aboutBook {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+    img {
+      margin-right: 18%;
+      margin-top: 4%;
+      background-color: rgb(255, 225, 225);
+      width: 450px;
+      height: 500px;
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+      margin-right: 7%;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 320px;
+      span {
+        color: rgb(157, 157, 157);
+        font-size: 25px;
+      }
+      .price {
+        font-size: 40px;
+        line-height: 60px;
+        font-family: "Bebas Neue", sans-serif;
+      }
+    }
+    .inf {
+      height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: flex-end;
+      font-size: 25px;
+    }
+  }
+  .cart {
+    background-color: #313037;
+    color: white;
+    width: 220px;
+    font-size: 20px;
+  }
+}
