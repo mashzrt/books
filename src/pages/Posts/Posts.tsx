@@ -10,6 +10,7 @@ const Posts = () => {
       .then((responce) => responce.json())
       .then((data) => setPosts(data.books));
   }, []);
+
   const postToRender = posts
     .reverse()
     .map(({ isbn13, price, title, image }) => (
@@ -29,6 +30,11 @@ const Posts = () => {
         </button>
       </div>
     ));
-  return <div className={styles.posts}>{postToRender}</div>;
+  return (
+    <div>
+      <h1>New Releases Books</h1>
+      <div className={styles.posts}>{postToRender}</div>;
+    </div>
+  );
 };
 export default Posts;

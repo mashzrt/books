@@ -1,0 +1,15 @@
+.tabs {
+  margin-top: 5%;
+  margin-bottom: 2%;
+  width: 20%;
+  border: 0;
+  border-bottom: 2px solid rgb(203, 203, 203);
+  background-color: transparent;
+}
+.tabs:active {
+  border-color: #929292;
+}
+
+.tab {
+  max-width: 85%;
+}
