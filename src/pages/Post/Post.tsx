@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ReactComponent as BackIcon } from "../../assets/goback.svg";
 import styles from "./post.module.scss";
 import Tabs from "../../components/Tabs/tabs";
-import Posts from "../Posts/Posts";
+import { addFavoritePost } from "../../store/favoritesSlice";
 
 const Post = () => {
   const { isbn13 } = useParams();
@@ -38,6 +38,7 @@ const Post = () => {
       <h1>{title}</h1>
       <div className={styles.aboutBook}>
         <img src={image} />
+
         <div className={styles.info}>
           <div className={styles.price}>
             <p>{price}</p>
@@ -55,6 +56,12 @@ const Post = () => {
           </p>
           <p>English</p>
           <p>Paper book / ebook (PDF)</p>
+          <button
+            className={styles.favorite}
+            onClick={() => dispatch(addFavoritePost({ post }))}
+          >
+            ADD TO FAVORITES
+          </button>
         </div>
       </div>
       <Tabs desc={desc} authors={authors} />

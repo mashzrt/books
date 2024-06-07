@@ -5,7 +5,7 @@ const LikedBooks = () => {
   const navigate = useNavigate();
 
   return (
-    <button onClick={() => navigate("/favoritebooks")}>
+    <button onClick={() => navigate("/favorite")}>
       <div>
         <LikeIcon />
       </div>

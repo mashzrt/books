@@ -16,7 +16,7 @@
       margin-right: 15%;
       margin-top: 4%;
       background-color: rgb(255, 225, 225);
-      width: 450px;
+      width: 430px;
       height: 500px;
     }
     .info {
@@ -37,18 +37,26 @@
       }
     }
     .inf {
-      height: 210px;
+      height: 230px;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: space-between;
       align-items: flex-end;
       font-size: 25px;
+      margin-top: 4%;
     }
   }
   .cart {
     background-color: #313037;
     color: white;
-    width: 220px;
+    width: 210px;
+    font-size: 20px;
+    margin-right: 5px;
+  }
+  .favorite {
+    background-color: #313037;
+    color: white;
+    width: 210px;
     font-size: 20px;
   }
 }

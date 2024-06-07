@@ -31,7 +31,7 @@ const Posts = () => {
       </div>
     ));
   return (
-    <div>
+    <div className={styles.Posts}>
       <h1>New Releases Books</h1>
       <div className={styles.posts}>{postToRender}</div>;
     </div>
