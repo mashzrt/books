@@ -18,5 +18,8 @@ export interface TodoItemTypes {
 export interface ICard {
   authors: string;
   image: string;
-  desc: string;
+  title: string;
+  year: string;
+  price: string;
+  isbn13: string;
 }
