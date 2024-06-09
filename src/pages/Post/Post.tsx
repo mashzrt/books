@@ -2,6 +2,7 @@ import { ReactComponent as BackIcon } from "../../assets/goback.svg";
 import styles from "./post.module.scss";
 import Tabs from "../../components/Tabs/tabs";
 import { addFavoritePost } from "../../store/favoritesSlice";
+import { addBasketPost } from "../../store/basketSlice";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -25,6 +26,9 @@ const Post: React.FC = () => {
   const [isFavoriteClicked, setIsFavoriteClicked] = useState(
     localStorage.getItem(`favorite_${isbn13}`) === "true"
   );
+  const [isBasketClicked, setIsBasketClicked] = useState(
+    localStorage.getItem(`basket_${isbn13}`) === "true"
+  );
 
   useEffect(() => {
     fetch(`https://api.itbook.store/1.0/books/${isbn13}`)
@@ -40,6 +44,11 @@ const Post: React.FC = () => {
     dispatch(addFavoritePost({ post }));
     setIsFavoriteClicked(true);
     localStorage.setItem(`favorite_${isbn13}`, "true");
+  };
+  const handleAddToBasket = () => {
+    dispatch(addBasketPost({ post }));
+    setIsBasketClicked(true);
+    localStorage.setItem(`basket_${isbn13}`, "true");
   };
 
   return (
@@ -59,7 +68,13 @@ const Post: React.FC = () => {
           <span>Publisher </span>
           <span>Language </span>
           <span>Format</span>{" "}
-          <button className={styles.cart}>ADD TO CART</button>
+          <button
+            className={styles.cart}
+            onClick={handleAddToBasket}
+            disabled={isBasketClicked}
+          >
+            {isBasketClicked ? "ADDED TO CART" : "ADD TO CART"}
+          </button>
         </div>
         <div className={styles.inf}>
           <p>{authors}</p>

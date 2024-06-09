@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todosSlice from "./todosSlice";
+
 import favoritesSlice from "./favoritesSlice";
+import basketSlice from "./basketSlice";
 
 export default configureStore({
   reducer: {
-    todos: todosSlice,
     favorites: favoritesSlice,
+    basket: basketSlice,
   },
 });

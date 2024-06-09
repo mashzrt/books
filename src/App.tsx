@@ -11,6 +11,8 @@ import Profile from "./pages/Profile/Profile";
 import Auth from "./HOC/Auth";
 import Favorite from "./pages/Favorite/Favorite";
 
+import Cart from "./pages/Cart/cart";
+
 function App() {
   return (
     <>
@@ -31,6 +33,7 @@ function App() {
           <Route path="posts/:isbn13" element={<Post />} />
           <Route path="profile" element={<Profile />} />
           <Route path="favorite" element={<Favorite />} />
+          <Route path="basket" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
