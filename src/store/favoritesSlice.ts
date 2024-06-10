@@ -15,6 +15,7 @@ const favoritesSlice = createSlice({
       }
     ) {
       state.favoritePosts.push(action.payload.post);
+      localStorage.setItem("book", JSON.stringify(state.favoritePosts));
     },
   },
 });

@@ -3,7 +3,6 @@ import styles from "./post.module.scss";
 import Tabs from "../../components/Tabs/tabs";
 import { addFavoritePost } from "../../store/favoritesSlice";
 import { addBasketPost } from "../../store/basketSlice";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -20,6 +19,7 @@ const Post: React.FC = () => {
     authors: "",
     desc: "",
   });
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -31,10 +31,15 @@ const Post: React.FC = () => {
   );
 
   useEffect(() => {
+    const favoriteStatus = localStorage.getItem(`favorite_${isbn13}`);
+    const basketStatus = localStorage.getItem(`basket_${isbn13}`);
+
+    // setIsFavoriteClicked(favoriteStatus === "true");
+    // setIsBasketClicked(basketStatus === "true");
+
     fetch(`https://api.itbook.store/1.0/books/${isbn13}`)
       .then((response) => response.json())
       .then((data) => setPost(data));
-    console.log({ isbn13 });
   }, [isbn13]);
 
   const { title, image, price, subtitle, year, publisher, authors, desc } =

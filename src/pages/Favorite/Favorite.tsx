@@ -6,11 +6,15 @@ import styles from "./favorite.module.scss";
 
 const Favorite = () => {
   const navigate = useNavigate();
-  const { favoritePosts } = useSelector(
-    (state) => state as { favorites: { favoritePosts: ICard[] } }
-  ).favorites;
+  // const { favoritePosts } = useSelector(
+  //   (state) => state as { favorites: { favoritePosts: ICard[] } }
+  // ).favorites;
+
+  const favoritePosts = JSON.parse(localStorage.getItem("book"));
+  console.log(favoritePosts);
+
   const favoritePostWrap = favoritePosts.map(
-    ({ authors, image, title, year, price }) => {
+    ({ authors, image, title, year, price }: ICard) => {
       return (
         <div className={styles.book}>
           <img className={styles.img} src={image} />

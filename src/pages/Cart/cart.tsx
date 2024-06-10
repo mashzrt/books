@@ -6,21 +6,23 @@ import styles from "./cart.module.scss";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const { basketPosts } = useSelector(
-    (state) => state as { basket: { basketPosts: ICard[] } }
-  ).basket;
+  // const { basketPosts } = useSelector(
+  //   (state) => state as { basket: { basketPosts: ICard[] } }
+  // ).basket;
+  const cartPosts = JSON.parse(localStorage.getItem("book"));
+  console.log(cartPosts);
 
-  const totalItems = basketPosts.length;
-  const totalCost = basketPosts
+  const totalItems = cartPosts.length;
+  const totalCost = cartPosts
     .reduce((totalAll, { price = 0 }) => {
-      const numericPrice = Number(price.replace(/[^0-9.-]+/g, "")); // Удаление нечисловых символов
+      const numericPrice = Number(price.replace(/[^0-9.-]+/g, ""));
       return totalAll + numericPrice;
     }, 0)
     .toFixed(2);
   console.log(` общая стоимость ${totalCost}`);
 
-  const basketPostWrap = basketPosts.map(
-    ({ authors, image, title, year, price }) => {
+  const basketPostWrap = cartPosts.map(
+    ({ authors, image, title, year, price }: ICard) => {
       return (
         <div className={styles.book}>
           <img className={styles.img} src={image} />
@@ -42,7 +44,7 @@ const Cart = () => {
       <h1>Your cart</h1>
       <div className={styles.basket}>{basketPostWrap}</div>
       <div className={styles.summary}>
-        <p>Number of books in the basket: {totalItems}</p>
+        {<p>Number of books in the basket: {totalItems}</p>}
         <p>Total cost: {totalCost}$</p>
       </div>
     </div>
