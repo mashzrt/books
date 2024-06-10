@@ -1,25 +1,48 @@
 import { useEffect, useState } from "react";
-import styles from "./posts.module.scss";
 import { useNavigate } from "react-router";
-import paginationSlice from "../../store/paginationSlice";
+import styles from "./posts.module.scss";
+import Input from "../../ui-components/Input/Input";
 
-const Posts = () => {
+interface Post {
+  isbn13: string;
+  price: string;
+  title: string;
+  image: string;
+}
+
+const Posts: React.FC = () => {
   const navigate = useNavigate();
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [searchedPosts, setSearchedPosts] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 9;
 
   useEffect(() => {
     fetch("https://api.itbook.store/1.0/new")
       .then((response) => response.json())
-      .then((data) => setPosts(data.books));
+      .then((data) => {
+        setPosts(data.books);
+        setSearchedPosts(data.books);
+      });
   }, []);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = searchedPosts.slice(indexOfFirstPost, indexOfLastPost);
 
-  const paginate = (currentPage) => setCurrentPage(currentPage);
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  const handleSearch = (searchInput: string) => {
+    if (searchInput.trim() === "") {
+      setSearchedPosts(posts);
+    } else {
+      const filteredPosts = posts.filter((post) =>
+        post.title.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      setSearchedPosts(filteredPosts);
+    }
+    setCurrentPage(1);
+  };
 
   const postToRender = currentPosts
     .reverse()
@@ -40,13 +63,17 @@ const Posts = () => {
     ));
 
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(posts.length / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(searchedPosts.length / postsPerPage); i++) {
     pageNumbers.push(i);
   }
 
   return (
     <div className={styles.Posts}>
-      <h1>New Releases Books</h1>
+      <div className={styles.search}>
+        <h1>New Releases Books</h1>
+        <Input handleSearch={handleSearch} />
+      </div>
+
       <div className={styles.posts}>{postToRender}</div>
       <div className={styles.pagination}>
         {pageNumbers.map((number) => (
