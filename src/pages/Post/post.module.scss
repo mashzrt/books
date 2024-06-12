@@ -11,7 +11,7 @@
     display: flex;
 
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     img {
       margin-right: 15%;
       margin-top: 4%;
@@ -22,10 +22,9 @@
     .info {
       display: flex;
       flex-direction: column;
-
-      flex-direction: column;
-      justify-content: space-evenly;
-      height: 320px;
+      justify-content: space-between;
+      height: 290px;
+      margin-bottom: 5%;
       span {
         color: rgb(157, 157, 157);
         font-size: 25px;
@@ -43,7 +42,7 @@
       justify-content: space-between;
       align-items: flex-end;
       font-size: 25px;
-      margin-top: 4%;
+      margin-bottom: 5%;
     }
   }
   .cart {

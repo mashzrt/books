@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ICard } from "../../types/types";
 import { ReactComponent as BackIcon } from "../../assets/goback.svg";
@@ -19,7 +18,7 @@ const Cart = () => {
       return totalAll + numericPrice;
     }, 0)
     .toFixed(2);
-  console.log(` общая стоимость ${totalCost}`);
+  // console.log(` ${totalCost}`);
 
   const basketPostWrap = cartPosts.map(
     ({ authors, image, title, year, price }: ICard) => {

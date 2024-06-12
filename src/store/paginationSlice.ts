@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FetchPost } from "../types/types";
-const API_URL = "https://studapi.teachmeskills.by/blog/posts/";
+// const API_URL = "https://studapi.teachmeskills.by/blog/posts/";
 export const fetchPosts = createAsyncThunk(
   "pagination/fetchPosts",
   async ({ limit, offset, search, ordering }: FetchPost) => {

@@ -3,7 +3,7 @@ import styles from "./post.module.scss";
 import Tabs from "../../components/Tabs/tabs";
 import { addFavoritePost } from "../../store/favoritesSlice";
 import { addBasketPost } from "../../store/basketSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -13,7 +13,6 @@ const Post: React.FC = () => {
     title: "",
     image: "",
     price: "",
-    subtitle: "",
     year: "",
     publisher: "",
     authors: "",
@@ -42,8 +41,7 @@ const Post: React.FC = () => {
       .then((data) => setPost(data));
   }, [isbn13]);
 
-  const { title, image, price, subtitle, year, publisher, authors, desc } =
-    post;
+  const { title, image, price, year, publisher, authors, desc } = post;
 
   const handleAddToFavorite = () => {
     dispatch(addFavoritePost({ post }));

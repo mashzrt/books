@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ICard } from "../../types/types";
 import { ReactComponent as BackIcon } from "../../assets/goback.svg";
