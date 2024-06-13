@@ -19,6 +19,7 @@ export interface ICard {
   price: string;
   isbn13: string;
   totalCost: string;
+  pdf: object;
 }
 
 export interface ActivateUser {
