@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICard } from "../../types/types";
 import { ReactComponent as BackIcon } from "../../assets/goback.svg";
@@ -5,10 +6,9 @@ import styles from "./cart.module.scss";
 
 const Cart = () => {
   const navigate = useNavigate();
-  // const { basketPosts } = useSelector(
-  //   (state) => state as { basket: { basketPosts: ICard[] } }
-  // ).basket;
-  const cartPosts = JSON.parse(localStorage.getItem("book"));
+  const [cartPosts, setCartPosts] = useState(
+    JSON.parse(localStorage.getItem("books")) || []
+  );
   console.log(cartPosts);
 
   const totalItems = cartPosts.length;
@@ -18,7 +18,16 @@ const Cart = () => {
       return totalAll + numericPrice;
     }, 0)
     .toFixed(2);
-  // console.log(` ${totalCost}`);
+
+  const handleClearCart = () => {
+    const booksInCart = JSON.parse(localStorage.getItem("books")) || [];
+
+    booksInCart.forEach((book) => {
+      localStorage.removeItem(`basket_${book.isbn13}`);
+    });
+    localStorage.removeItem("books");
+    setCartPosts([]);
+  };
 
   const basketPostWrap = cartPosts.map(
     ({ authors, image, title, year, price }: ICard) => {
@@ -40,13 +49,17 @@ const Cart = () => {
   return (
     <div className={styles.basketPosts}>
       <BackIcon onClick={() => navigate(-1)}> </BackIcon>
-      <h1>Your cart</h1>
+      <div className={styles.clearCart}>
+        <h1>Your cart</h1>
+        <button onClick={handleClearCart}>Clear Cart</button>
+      </div>
       <div className={styles.basket}>{basketPostWrap}</div>
       <div className={styles.summary}>
-        {<p>Number of books in the basket: {totalItems}</p>}
+        <p>Number of books in the basket: {totalItems}</p>
         <p>Total cost: {totalCost}$</p>
       </div>
     </div>
   );
 };
+
 export default Cart;

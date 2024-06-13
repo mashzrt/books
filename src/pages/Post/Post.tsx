@@ -30,12 +30,6 @@ const Post: React.FC = () => {
   );
 
   useEffect(() => {
-    const favoriteStatus = localStorage.getItem(`favorite_${isbn13}`);
-    const basketStatus = localStorage.getItem(`basket_${isbn13}`);
-
-    // setIsFavoriteClicked(favoriteStatus === "true");
-    // setIsBasketClicked(basketStatus === "true");
-
     fetch(`https://api.itbook.store/1.0/books/${isbn13}`)
       .then((response) => response.json())
       .then((data) => setPost(data));
@@ -53,7 +47,9 @@ const Post: React.FC = () => {
     setIsBasketClicked(true);
     localStorage.setItem(`basket_${isbn13}`, "true");
   };
-
+  useEffect(() => {
+    setIsBasketClicked(localStorage.getItem(`basket_${isbn13}`) === "true");
+  }, [isbn13]);
   return (
     <div className={styles.post}>
       <div className={styles.BackIcon}>

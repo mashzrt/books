@@ -2,47 +2,38 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "./posts.module.scss";
 import Input from "../../ui-components/Input/Input";
-
-interface Post {
-  isbn13: string;
-  price: string;
-  title: string;
-  image: string;
-}
+import { fetchBooks } from "../../api/api";
+import { filterPosts } from "./search";
+import { ICard } from "../../types/types";
+import { paginate, generatePageNumbers } from "./pagination";
 
 const Posts: React.FC = () => {
   const navigate = useNavigate();
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [searchedPosts, setSearchedPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<ICard[]>([]);
+  const [searchedPosts, setSearchedPosts] = useState<ICard[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 9;
 
   useEffect(() => {
-    fetch("https://api.itbook.store/1.0/new")
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data.books);
-        setSearchedPosts(data.books);
-      });
+    fetchBooks().then((data) => {
+      setPosts(data);
+      setSearchedPosts(data);
+    });
   }, []);
+
+  const handleSearch = (searchInput: string) => {
+    const filteredPosts = filterPosts(posts, searchInput);
+    setSearchedPosts(filteredPosts);
+    setCurrentPage(1);
+  };
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = searchedPosts.slice(indexOfFirstPost, indexOfLastPost);
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const paginationHandler = paginate(currentPage, postsPerPage, setCurrentPage);
 
-  const handleSearch = (searchInput: string) => {
-    if (searchInput.trim() === "") {
-      setSearchedPosts(posts);
-    } else {
-      const filteredPosts = posts.filter((post) =>
-        post.title.toLowerCase().includes(searchInput.toLowerCase())
-      );
-      setSearchedPosts(filteredPosts);
-    }
-    setCurrentPage(1);
-  };
+  const pageNumbers = generatePageNumbers(searchedPosts, postsPerPage);
 
   const postToRender = currentPosts
     .reverse()
@@ -62,11 +53,6 @@ const Posts: React.FC = () => {
       </div>
     ));
 
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(searchedPosts.length / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
   return (
     <div className={styles.Posts}>
       <div className={styles.search}>
@@ -79,7 +65,7 @@ const Posts: React.FC = () => {
         {pageNumbers.map((number) => (
           <button
             key={number}
-            onClick={() => paginate(number)}
+            onClick={() => paginationHandler(number)}
             className={styles.pageItem}
           >
             {number}

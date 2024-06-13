@@ -6,11 +6,27 @@
   flex-wrap: nowrap;
   width: 70%;
   margin-left: 15%;
+  .clearCart {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+    button {
+      font-size: 25px;
+      border: 2px solid black;
+      padding: 1%;
+    }
+    button:hover {
+      border: 3px solid black;
+      padding: 1.2%;
+    }
 
-  h1 {
-    font-size: 40px;
-    margin-top: 4%;
-    margin-bottom: 3%;
+    h1 {
+      font-size: 40px;
+      margin-top: 4%;
+      margin-bottom: 3%;
+    }
   }
   .basket {
     width: 70%;

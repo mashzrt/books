@@ -15,6 +15,7 @@ const basketSlice = createSlice({
       }
     ) {
       state.basketPosts.push(action.payload.post);
+      localStorage.setItem("books", JSON.stringify(state.basketPosts));
     },
   },
 });

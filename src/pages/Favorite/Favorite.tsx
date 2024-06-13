@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ICard } from "../../types/types";
 import { ReactComponent as BackIcon } from "../../assets/goback.svg";
+
 import styles from "./favorite.module.scss";
 
 const Favorite = () => {
@@ -9,7 +10,7 @@ const Favorite = () => {
   //   (state) => state as { favorites: { favoritePosts: ICard[] } }
   // ).favorites;
 
-  const favoritePosts = JSON.parse(localStorage.getItem("book"));
+  const favoritePosts = JSON.parse(localStorage.getItem("book")) || [];
   console.log(favoritePosts);
 
   const favoritePostWrap = favoritePosts.map(
